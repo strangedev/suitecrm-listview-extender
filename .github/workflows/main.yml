@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: 
+      - master
+    tags: 
+      - v*
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - run: npm install
+      - run: npm build
+      - uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: ViewList extender for SuiteCRM ${{ github.ref }}
+          draft: false
+          prerelease: false
