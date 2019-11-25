@@ -1,6 +1,6 @@
 # suitecrm-listview-extender
 
-Allows multiple list view controller implementations to work simultaneously
+Allows multiple list view extensions to work simultaneously
 
 ## What is the purpose of this plugin?
 
