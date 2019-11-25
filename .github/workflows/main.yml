@@ -2,14 +2,11 @@ name: CI
 
 on:
   push:
-    branches: 
-      - master
     tags: 
       - v*
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -19,8 +16,20 @@ jobs:
           node-version: '12.x'
       - run: npm install
       - run: npm build
-      - uses: skx/github-action-publish-binaries@master
+      - id: create_release
+        uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          args: 'build/*.zip'
+          tag_name: ${{ github.ref }}
+          release_name: ViewList extender for SuiteCRM ${{ github.ref }}
+          draft: false
+          prerelease: false
+      - uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./build/listview-extender.zip
+          asset_name: listview-extender-${{ github.ref }}.zip
+          asset_content_type: application/zip
