@@ -1,0 +1,22 @@
+{
+  "modules": [
+    { "name": "Accounts" },
+    { "name": "Contacts" },
+    { "name": "Opportunities" },
+    { "name": "Leads" },
+    { "name": "Calls" },
+    { "name": "Meetings" },
+    { "name": "EmailTemplates" },
+    { "name": "Emails" },
+    { "name": "Tasks" },
+    { "name": "Notes" },
+    { "name": "Documents" },
+    { "name": "Campaigns" },
+    { "name": "Surveys" },
+    { "name": "Bugs" },
+    { "name": "Cases" },
+    { "name": "Projects" },
+    { "name": "Spots" },
+    { "name": "Employees" }
+  ]
+}

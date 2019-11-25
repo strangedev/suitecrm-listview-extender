@@ -1,0 +1,21 @@
+{
+  "name": "suitecrm-listview-extender",
+  "version": "1.0.0",
+  "description": "Tools for building",
+  "main": "none",
+  "repository": "git@github.com:strangedev/suitecrm-listview-extender.git",
+  "author": "Noah Hummel <oss@noahhummel.consulting>",
+  "license": "Apache-2.0",
+  "private": false,
+  "devDependencies": {
+    "mustache": "^3.1.0"
+  },
+  "scripts": {
+    "clean": "rm -rf build",
+    "mkdir-build": "yarn run clean && mkdir -p build/sdist",
+    "copy-sources": "yarn run mkdir-build && cp -r plugin/*.php build/sdist/",
+    "render-templates": "mustache plugin/modules.json plugin/manifest.mustache > build/sdist/manifest.php",
+    "pack-plugin": "yarn run copy-sources && yarn run render-templates && zip -jr build/listview-extender.zip build/sdist/*",
+    "build": "yarn run pack-plugin"
+  }
+}

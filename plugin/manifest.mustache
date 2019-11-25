@@ -1,0 +1,45 @@
+<?php
+
+$manifest = array(
+    'acceptable_sugar_versions' => array(
+        'exact_matches' => array(
+            1 => '6.5.15'
+        ),
+        'regex_matches' => array(
+            1 => '6\.4\.\d',
+            2 => '6\.[0-9]\.\d',
+            3 => '7\.[0-9]\.\d'
+        )
+    ),
+    'acceptable_sugar_flavors' => array(
+        'CE',
+        'PRO',
+        'ENT',
+        'CORP'
+    ),
+    'readme' => '',
+    'key' => '',
+    'author' => '',
+    'description' => 'Enables multiple listview implementations to work simultaneously on the core modules',
+    'icon' => '',
+    'is_uninstallable' => true,
+    'name' => 'SuiteCRM ListView Extender',
+    'published_date' => '2019',
+    'type' => 'module',
+    'version' => 'v0.0.1',
+    'remove_tables' => false
+);
+
+$installdefs = array(
+    'id' => 'listview-extender',
+    'copy' => Array(
+        {{#modules}}
+        array(
+            'from' => '<basepath>/view.list.php',
+            'to' => 'custom/modules/{{name}}/views/view.list.php'
+        ),
+        {{/modules}}
+    )
+);
+
+$upgrade_manifest = array();
