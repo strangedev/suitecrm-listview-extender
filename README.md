@@ -39,8 +39,8 @@ $hooks[] = function ($view) {
     }
     document.MassUpdate.action.value='displaypassedids';
     document.MassUpdate.submit();">Send records to a new view!</a>;
-}
 EOF;
+}
 ```
 
 The example adds a custom button to the list view.
