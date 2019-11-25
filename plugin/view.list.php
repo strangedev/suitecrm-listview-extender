@@ -20,9 +20,9 @@ class ViewListExtender extends ViewList
     protected function loadHooks()
     {
         $module = $_REQUEST['current_module'];
-        $listView = 'custom/modules/${module}/view.list.d';
+        $hookDir = 'custom/modules/${module}/view.list.d';
         $hooks = array();
-        foreach (glob('${controllerDir}/*.php') as $file) {
+        foreach (glob('${hookDir}/*.php') as $file) {
             include_once $file;
         }
         return $hooks;
