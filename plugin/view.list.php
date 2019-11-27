@@ -20,6 +20,10 @@ class ViewListExtender extends ViewList
     protected function loadHooks()
     {
         $module = $_REQUEST['current_module'];
+        if (!preg_match('/\w+/i', $module)) {
+            return;  // don't load funny paths
+        }
+
         $hookDir = 'custom/modules/${module}/view.list.d';
         $hooks = array();
         foreach (glob('${hookDir}/*.php') as $file) {

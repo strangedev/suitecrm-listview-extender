@@ -1,0 +1,19 @@
+<?php
+
+$modules = [
+    {{#modules}}
+    "{{name}}",
+    {{/modules}}
+];
+
+foreach ($modules as $module) {
+    $hooks = array();
+    $files = array();
+    foreach (glob('${hookDir}/*.php') as $file) {
+        $files[] = $file;
+    }
+    echo '<b>${module}</b>';
+    foreach (glob('${hookDir}/*.php') as $file) {
+        echo '<i>${file}</i>';
+    }
+}

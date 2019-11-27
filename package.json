@@ -8,13 +8,14 @@
   "license": "Apache-2.0",
   "private": false,
   "devDependencies": {
+    "glob": "^7.1.6",
     "mustache": "^3.1.0"
   },
   "scripts": {
     "clean": "rm -rf build",
     "mkdir-build": "yarn run clean && mkdir -p build/sdist",
     "copy-sources": "yarn run mkdir-build && cp -r plugin/*.php build/sdist/",
-    "render-templates": "mustache plugin/modules.json plugin/manifest.mustache > build/sdist/manifest.php",
+    "render-templates": "node templates.js ./plugin/modules.json",
     "pack-plugin": "yarn run copy-sources && yarn run render-templates && zip -jr build/listview-extender.zip build/sdist/*",
     "build": "yarn run pack-plugin"
   }
