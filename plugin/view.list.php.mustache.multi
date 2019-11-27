@@ -29,7 +29,7 @@ class Custom{{name}}ViewList extends {{name}}ViewList
         $files = array();
         getFiles($files, $hookDir);
         foreach ($files as $file) {
-            include_once $file;
+            $hooks[] = (include $file);
         }
         $n = count($hooks);
         $GLOBALS['log']->info("[LV Extender] {{name}} loaded ${n} hooks");
