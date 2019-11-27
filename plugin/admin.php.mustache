@@ -1,19 +1,22 @@
 <?php
 
+require_once('include/utils/file_utils.php');
+
 $modules = [
     {{#modules}}
     "{{name}}",
     {{/modules}}
 ];
 
+echo "<h3>ListView Extender</h3>";
+
 foreach ($modules as $module) {
-    $hooks = array();
+    $hookDir = "./custom/modules/${module}/views/view.list.d";
     $files = array();
-    foreach (glob('${hookDir}/*.php') as $file) {
-        $files[] = $file;
+    getFiles($files, $hookDir);
+    echo "<p><b>${module} @ ${hookDir}</b><br/>";
+    foreach ($files as $file) {
+        echo "<i>${file}</i>";
     }
-    echo '<b>${module}</b>';
-    foreach (glob('${hookDir}/*.php') as $file) {
-        echo '<i>${file}</i>';
-    }
+    echo "</p>";
 }

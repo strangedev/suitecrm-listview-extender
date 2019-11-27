@@ -14,8 +14,8 @@
   "scripts": {
     "clean": "rm -rf build",
     "mkdir-build": "yarn run clean && mkdir -p build/sdist",
-    "copy-sources": "yarn run mkdir-build && cp -r plugin/*.php build/sdist/",
-    "render-templates": "node templates.js ./plugin/modules.json",
+    "copy-sources": "yarn run mkdir-build",
+    "render-templates": "node templates.js ./plugin/modules.json modules name",
     "pack-plugin": "yarn run copy-sources && yarn run render-templates && zip -jr build/listview-extender.zip build/sdist/*",
     "build": "yarn run pack-plugin"
   }

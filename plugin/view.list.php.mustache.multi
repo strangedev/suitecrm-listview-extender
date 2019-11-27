@@ -1,0 +1,38 @@
+<?php
+require_once 'modules/{{name}}/views/view.list.php';
+require_once 'include/utils/file_utils.php';
+
+class Custom{{name}}ViewList extends {{name}}ViewList
+{
+    /**
+     * @see ViewList::preDisplay()
+     */
+    public function preDisplay()
+    {
+        parent::preDisplay();
+        $n = 0;
+        foreach ($this->loadHooks() as $hookFn) {
+            $hookFn($this);
+            $n++;
+        }
+        $GLOBALS['log']->info("[LV Extender] {{name}} executed ${n} hooks");
+    }
+    /**
+     * Globs the listview.d directory and loads all hooks defined
+     * in it.
+     * @return array Of hook functions to be executed on the listview
+     */
+    protected function loadHooks()
+    {
+        $hookDir = "./custom/modules/{{name}}/views/view.list.d";
+        $hooks = array();
+        $files = array();
+        getFiles($files, $hookDir);
+        foreach ($files as $file) {
+            include_once $file;
+        }
+        $n = count($hooks);
+        $GLOBALS['log']->info("[LV Extender] {{name}} loaded ${n} hooks");
+        return $hooks;
+    }
+}

@@ -33,12 +33,18 @@ $manifest = array(
 $installdefs = array(
     'id' => 'listview-extender',
     'copy' => Array(
+        // @codingStandardsIgnoreLine
         {{#modules}}
         array(
-            'from' => '<basepath>/view.list.php',
+            'from' => '<basepath>/view.list.php.{{name}}',
             'to' => 'custom/modules/{{name}}/views/view.list.php'
         ),
         {{/modules}}
+    ),
+    'administration' => array(
+        array(
+            'from' => '<basepath>/admin.php'
+        )
     )
 );
 
