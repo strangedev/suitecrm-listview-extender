@@ -17,17 +17,22 @@ change sort order, etc.
 Instead of copying your custom ViewList implementation into
 `custom/modules/<module>/views/view.list.php`, you create a new
 file containing your hook inside `custom/modules/<module>/views/view.list.d/`.
-In this file, you register the hook by extending the `$hooks` array:
+In this file, you register the hook by returning it:
 
 ```php
-$hooks[] = function ($view) { ... }
+<?php
+
+return function ($view) { ... }
 ```
 
 Your hook function receives the ViewList instance as a parameter,
-you may apply your modifications to the view here, for example:
+you may apply your modifications to the view here, for example
+(thanks to [@pgorod](https://gist.github.com/pgorod/5de7c6f8d37413654b16e06668d7e1b1)):
 
 ```php
-$hooks[] = function ($view) {
+<?php
+
+return function ($view) {
     global $app_strings;
     $view->lv->actionsMenuExtraItems[] = <<<EOF
 <a class="menuItem" style="width: 150px;" href="#" onmouseover='hiliteItem(this,"yes");'
