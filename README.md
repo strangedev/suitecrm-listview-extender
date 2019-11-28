@@ -1,4 +1,4 @@
-# suitecrm-listview-extender
+# suitecrm-listview-extender (wip)
 
 Allows multiple list view extensions to work simultaneously
 
