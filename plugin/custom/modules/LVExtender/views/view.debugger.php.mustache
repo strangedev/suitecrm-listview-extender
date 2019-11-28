@@ -1,0 +1,41 @@
+<?php
+if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
+
+global $current_user;
+if($current_user->isAdmin() == 1) {
+    ACLController::displayNoAccess();
+    sugar_die('');
+}
+
+class DebuggerView extends SugarView
+{
+    protected $modulekeys = [
+        {{#modules}}
+        '{{name}}',
+        {{/modules}}
+    ];
+
+    public function preDisplay()
+    {
+        $this->dv->tpl = 'custom/modules/LVExtender/views/debugger.tpl';
+    }
+
+    public function display()
+    {
+        global $mod_strings, $app_strings;
+        $smarty = new Sugar_Smarty();
+        $smarty->assign('MOD', $mod_strings);
+        $smarty->assign('APP', $app_strings);
+
+        $moduleHooks = array();
+        foreach ($this->moduleKeys as $module) {
+            $hookDir = "./custom/modules/${module}/views/view.list.d";
+            $files = array();
+            getFiles($files, $hookDir);
+            $moduleHooks[$module] = $files;
+        }
+        $smarty->assign('LV_HOOKS', $moduleHooks);
+
+        $smarty->display($this->dv->tpl);
+    }
+}

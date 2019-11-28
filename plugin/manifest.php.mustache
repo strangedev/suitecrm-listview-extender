@@ -18,8 +18,8 @@ $manifest = array(
         'CORP'
     ),
     'readme' => '',
-    'key' => '',
-    'author' => '',
+    'key' => 'LVExtender',
+    'author' => 'Noah Hummel <oss@noahhummel.consulting>',
     'description' => 'Enables multiple listview implementations to work simultaneously on the core modules',
     'icon' => '',
     'is_uninstallable' => true,
@@ -27,12 +27,17 @@ $manifest = array(
     'published_date' => '2019',
     'type' => 'module',
     'version' => 'v1.0.0',
-    'remove_tables' => false
+    'remove_tables' => false,
+    'copy_files' => array (
+        'from_dir' => '<basepath>/custom/modules/LVExtender',
+        'to_dir' => 'custom/modules/LVExtender',
+        'force_copy' => array (),
+    )
 );
 
 $installdefs = array(
     'id' => 'listview-extender',
-    'copy' => Array(
+    'copy' => array(
         // @codingStandardsIgnoreLine
         {{#modules}}
         array(
@@ -40,11 +45,39 @@ $installdefs = array(
             'to' => 'custom/modules/{{name}}/views/view.list.php'
         ),
         {{/modules}}
+        array(
+            'from' => '<basepath>/custom/modules/LVExtender/controller.php',
+            'to' => 'custom/modules/LVExtender/controller.php'
+        ),
+        array(
+            'from' => '<basepath>/custom/modules/LVExtender/administration.php',
+            'to' => 'custom/modules/LVExtender/administration.php'
+        ),
+        array(
+            'from' => '<basepath>/custom/modules/LVExtender/views/view.debugger.php',
+            'to' => 'custom/modules/LVExtender/views/view.debugger.php'
+        ),
+        array(
+            'from' => '<basepath>/custom/modules/LVExtender/views/debugger.tpl',
+            'to' => 'custom/modules/LVExtender/views/debugger.tpl'
+        )
     ),
     'administration' => array(
         array(
-            'from' => '<basepath>/admin.php'
+            'from' => '<basepath>/custom/modules/LVExtender/administration.php'
         )
+    ),
+    'language' => array(
+        array(
+            'from' => '<basepath>/locale/de_de.php',
+            'to_module' => 'LVExtender',
+            'language' => 'de_de'
+        ),
+        array(
+            'from' => '<basepath>/locale/en_en.php',
+            'to_module' => 'LVExtender',
+            'language' => 'en_en'
+        ),
     )
 );
 

@@ -24,8 +24,9 @@ async function renderTemplates(jsonFile, multiRoot, multiKey) {
   for (const f of files) {
     const template = await fs.readFile(`plugin/${f}`, "utf8");
     const name = path.basename(f, ".mustache");
-    console.info(`Rendering template ${f} -> ${name}`);
-    await fs.writeFile(`build/sdist/${name}`, Mustache.render(template, view));
+    const out = path.join(path.dirname(f), name);
+    console.info(`Rendering template ${f} -> ${out}`);
+    await fs.writeFile(`build/${out}`, Mustache.render(template, view));
   }
   const multis = await getTemplates(true);
   for (const viewRoot of view[multiRoot]) {
@@ -38,10 +39,7 @@ async function renderTemplates(jsonFile, multiRoot, multiKey) {
       const tmpView = {};
       tmpView[multiKey] = viewRoot[multiKey];
 
-      await fs.writeFile(
-        `build/sdist/${name}`,
-        Mustache.render(template, tmpView)
-      );
+      await fs.writeFile(`build/${name}`, Mustache.render(template, tmpView));
     }
   }
 }

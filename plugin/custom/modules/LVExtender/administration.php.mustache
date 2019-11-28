@@ -1,0 +1,24 @@
+<?php
+
+require_once('include/utils/file_utils.php');
+
+$modules = [
+    {{#modules}}
+    "{{name}}",
+    {{/modules}}
+];
+$admin_option_defs = array();
+$admin_option_defs['Administration']['LVExtender_Debugger'] = array(
+    'Administration',
+    'LBL_LV_DEBUGGER',
+    'LBL_LV_DEBUGGER_DESCRIPTION',
+    './index.php?module=LVExtender&action=debugger'
+);
+
+$admin_group_header[] = array(
+    'LBL_LV_SECTION_HEADER',
+    '',
+    false,
+    $admin_option_defs,
+    'LBL_LV_SECTION_DESCRIPTION'
+);

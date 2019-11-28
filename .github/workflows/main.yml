@@ -30,6 +30,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./build/listview-extender.zip
+          asset_path: ./build/plugin.zip
           asset_name: listview-extender-${{ github.sha }}.zip
           asset_content_type: application/zip
