@@ -1,13 +1,8 @@
 <?php
 if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
 
-global $current_user;
-if($current_user->isAdmin() == 1) {
-    ACLController::displayNoAccess();
-    sugar_die('');
-}
 
-class DebuggerView extends SugarView
+class LVExtenderViewDebugger extends SugarView
 {
     protected $modulekeys = [
         {{#modules}}

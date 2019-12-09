@@ -1,17 +1,15 @@
 <?php
 if(!defined('sugarEntry') || !sugarEntry) die('Not A Valid Entry Point');
 
-global $current_user;
-if($current_user->isAdmin() == 1) {
-    ACLController::displayNoAccess();
-    sugar_die('');
-}
 
-class LVExtenderAdminController extends SugarController
+class LVExtenderController extends SugarController
 {
-
     public function action_debugger() {
+        global $current_user;
+        if(!$current_user->isAdmin()) {
+            ACLController::displayNoAccess();
+            sugar_die('');
+        }
         $this->view = 'debugger';
-        header('Location: index.php?module=Administration&action=index');
     }
 }
