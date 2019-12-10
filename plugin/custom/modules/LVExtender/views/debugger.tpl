@@ -2,7 +2,7 @@
 {foreach from=$LV_HOOKS key=MODULE item=FILES}
     <h3>{$MODULE}</h3>
     <ul>
-    {foreach from=$FILES item=$FILE}
+    {foreach from=$FILES item=FILE}
         <li>{$FILE}</li>
     {/foreach}
     </ul>
