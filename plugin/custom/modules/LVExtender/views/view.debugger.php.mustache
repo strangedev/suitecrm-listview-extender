@@ -23,13 +23,16 @@ class LVExtenderViewDebugger extends SugarView
         $smarty->assign('APP', $app_strings);
 
         $moduleHooks = array();
+        $hookCnt = 0;
         foreach ($this->moduleKeys as $module) {
             $hookDir = "./custom/modules/${module}/views/view.list.d";
             $files = array();
             getFiles($files, $hookDir);
             $moduleHooks[$module] = $files;
+            $hookCnt += count($files);
         }
         $smarty->assign('LV_HOOKS', $moduleHooks);
+        $smarty->assign('LV_HOOKCNT', $hookCnt);
 
         $smarty->display($this->dv->tpl);
     }
