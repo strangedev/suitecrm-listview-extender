@@ -3,7 +3,7 @@ namespace LVExtender\UnInstaller;
 
 const version = "{{ version }}";
 
-function writeVersion()
+function deleteVersion()
 {
     echo "Removing plugin version from global config.";
     $configurator = new \Configurator();
@@ -15,7 +15,7 @@ function writeVersion()
 function main()
 {
     echo "Running pre_uninstall.";
-    writeVersion();
+    deleteVersion();
 }
 
 main();
