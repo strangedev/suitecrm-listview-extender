@@ -13,10 +13,10 @@
   },
   "scripts": {
     "clean": "rm -rf build",
-    "mkdir-build": "yarn run clean && mkdir -p build",
-    "copy-sources": "yarn run mkdir-build && rsync -vr --exclude='*.mustache*' plugin/* build",
+    "mkdir-build": "npm run clean && mkdir -p build",
+    "copy-sources": "npm run mkdir-build && rsync -vr --exclude='*.mustache*' plugin/* build",
     "render-templates": "node templates.js ./plugin/modules.mustachedata.json modules name",
-    "pack-plugin": "yarn run copy-sources && yarn run render-templates && cd build && zip -r lvextender.zip *",
-    "build": "yarn run pack-plugin"
+    "pack-plugin": "npm run copy-sources && npm run render-templates && cd build && zip -r lvextender.zip *",
+    "build": "npm run pack-plugin"
   }
 }

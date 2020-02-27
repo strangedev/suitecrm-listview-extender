@@ -18,5 +18,6 @@
     { "name": "Projects" },
     { "name": "Spots" },
     { "name": "Employees" }
-  ]
+  ],
+  "version": "v1.2.0"
 }

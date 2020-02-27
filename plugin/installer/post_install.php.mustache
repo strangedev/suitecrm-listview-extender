@@ -1,0 +1,21 @@
+<?php
+namespace LVExtender\Installer;
+
+const version = "{{ version }}";
+
+function writeVersion()
+{
+    echo "Writing plugin version to global config.";
+    $configurator = new \Configurator();
+    $configurator->loadConfig();
+    $configurator->config["LVExtenderVersion"] = version;
+    $configurator->saveConfig();
+}
+
+function main()
+{
+    echo "Running post_install.";
+    writeVersion();
+}
+
+main();

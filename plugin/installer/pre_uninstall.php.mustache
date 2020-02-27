@@ -1,0 +1,21 @@
+<?php
+namespace LVExtender\UnInstaller;
+
+const version = "{{ version }}";
+
+function writeVersion()
+{
+    echo "Removing plugin version from global config.";
+    $configurator = new \Configurator();
+    $configurator->loadConfig();
+    unset($configurator->config["LVExtenderVersion"]);
+    $configurator->saveConfig();
+}
+
+function main()
+{
+    echo "Running pre_uninstall.";
+    writeVersion();
+}
+
+main();

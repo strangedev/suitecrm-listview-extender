@@ -26,7 +26,7 @@ $manifest = array(
     'name' => 'SuiteCRM ListView Extender',
     'published_date' => '2019',
     'type' => 'module',
-    'version' => 'v1.1.0',
+    'version' => '{{version}}',
     'remove_tables' => false,
     'copy_files' => array (
         'from_dir' => '<basepath>/custom/modules/LVExtender',
@@ -88,6 +88,12 @@ $installdefs = array(
             'to_module' => 'LVExtender',
             'language' => 'en_us'
         ),
+    ),
+    'post_execute' => array(
+        '<basepath>/installer/post_install.php'
+    ),
+    'pre_uninstall' => array(
+        '<basepath>/installer/pre_uninstall.php'
     )
 );
 
